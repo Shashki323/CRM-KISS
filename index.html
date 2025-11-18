@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CRM Dashboard — test chart</title>
+
+    <!-- Font Awesome (иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <aside class="sidebar">
+        <h2 class="logo">CRM</h2>
+        <ul class="menu">
+            <li class="menu-item active" data-page="dashboard"><i class="fa fa-chart-line"></i> Дашборд</li>
+            <li class="menu-item" data-page="orders"><i class="fa fa-box"></i> Контракты</li>
+            <li class="menu-item" data-page="clients"><i class="fa fa-users"></i> Контрагенты</li>
+            <li class="menu-item" data-page="address-book"><i class="fa fa-address-book"></i> Пользователи</li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <section id="dashboard" class="section">
+            <h1 class="title">Дашборд продаж</h1>
+
+            <div class="cards">
+                <div class="card"><h3>Продажи за месяц</h3><p class="number" id="salesMonth">-</p></div>
+                <div class="card"><h3>Новых заказов</h3><p class="number" id="newOrders">-</p></div>
+                <div class="card"><h3>Доход</h3><p class="number" id="profit">-</p></div>
+                <div class="card"><h3>Новых клиентов</h3><p class="number" id="clientsCount">-</p></div>
+            </div>
+
+            <div class="section chart-section">
+                <h2>График продаж</h2>
+                <!-- canvas обёрнут, чтобы указывать высоту блока -->
+                <div class="chart-wrapper">
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="section chart-section">
+    <h2>Статусы заказов</h2>
+    <div class="chart-wrapper small-chart">
+        <canvas id="statusChart"></canvas>
+    </div>
+            </div>
+
+            <div class="section">
+                <h2>Последние заказы</h2>
+                <table class="orders-table">
+                    <thead>
+                        <tr><th>ID</th><th>Клиент</th><th>Сумма</th><th>Статус</th></tr>
+                    </thead>
+                    <tbody id="ordersTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="orders" class="section hidden"><h1>Заказы</h1></section>
+        <section id="clients" class="section hidden"><h1>Клиенты</h1></section>
+    </main>
+
+    <!-- Chart.js: подключаем из CDN (обратите внимание: подключаем ДО нашего script.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+
+
+
+    <!-- Наш скрипт -->
+    <script src="script.js"></script>
+</body>
+</html>
