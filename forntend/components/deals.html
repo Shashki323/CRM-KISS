@@ -1,0 +1,180 @@
+<div class="deals-page">
+    <!-- Заголовок -->
+    <div class="page-header">
+        <h3><i class="fas fa-box"></i> Управление сделками</h3>
+        <button class="btn btn-success" id="addDealBtn">
+            <i class="fas fa-plus-circle"></i> Новая сделка
+        </button>
+    </div>
+    
+    <!-- Фильтры -->
+    <div class="filters-bar">
+        <div class="filter-group">
+            <label>Период:</label>
+            <select id="dealPeriod">
+                <option value="all">Все время</option>
+                <option value="month">Текущий месяц</option>
+                <option value="week">Эта неделя</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label>Статус:</label>
+            <select id="dealStatusFilter">
+                <option value="">Все</option>
+                <option value="новый">Новый</option>
+                <option value="в работе">В работе</option>
+                <option value="завершен">Завершен</option>
+                <option value="отменен">Отменен</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label>Клиент:</label>
+            <select id="dealClientFilter">
+                <option value="">Все клиенты</option>
+                <!-- Заполнится через JS -->
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="dealSearch" placeholder="Поиск сделок...">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Сводка по сделкам -->
+    <div class="deals-summary">
+        <div class="summary-card">
+            <div class="summary-icon" style="background: #FF9800;">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="summary-content">
+                <h4>В работе</h4>
+                <p class="summary-value" id="dealsInProgress">0</p>
+            </div>
+        </div>
+        
+        <div class="summary-card">
+            <div class="summary-icon" style="background: #4CAF50;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="summary-content">
+                <h4>Завершено</h4>
+                <p class="summary-value" id="dealsCompleted">0</p>
+            </div>
+        </div>
+        
+        <div class="summary-card">
+            <div class="summary-icon" style="background: #2196F3;">
+                <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <div class="summary-content">
+                <h4>Общая сумма</h4>
+                <p class="summary-value" id="totalDealsAmount">0 ₽</p>
+            </div>
+        </div>
+        
+        <div class="summary-card">
+            <div class="summary-icon" style="background: #9C27B0;">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="summary-content">
+                <h4>Средний чек</h4>
+                <p class="summary-value" id="averageDealAmount">0 ₽</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Таблица сделок -->
+    <div class="table-responsive">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Клиент</th>
+                    <th>Сумма</th>
+                    <th>Статус</th>
+                    <th>Дата создания</th>
+                    <th>Дедлайн</th>
+                    <th>Менеджер</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody id="dealsTableBody">
+                <tr><td colspan="9">Загрузка сделок...</td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Статистика -->
+    <div class="deals-stats">
+        <div class="stats-chart">
+            <canvas id="dealsChart"></canvas>
+        </div>
+        <div class="stats-info">
+            <h4>Статистика по сделкам</h4>
+            <ul class="stats-list">
+                <li>Конверсия: <span id="conversionRate">0%</span></li>
+                <li>Время сделки: <span id="avgDealTime">0 дн.</span></li>
+                <li>Успешных: <span id="successRate">0%</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Локальный скрипт для сделок
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Компонент сделок загружен');
+        
+        // Инициализация фильтров
+        initDealFilters();
+        
+        // Кнопка добавления
+        const addBtn = document.getElementById('addDealBtn');
+        if (addBtn) {
+            addBtn.addEventListener('click', () => {
+                showDealModal();
+            });
+        }
+    });
+    
+    function initDealFilters() {
+        // Заполняем фильтр клиентов
+        loadClientsForFilter();
+        
+        // Настройка поиска
+        const searchInput = document.getElementById('dealSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', debounce((e) => {
+                filterDeals(e.target.value);
+            }, 300));
+        }
+    }
+    
+    async function loadClientsForFilter() {
+        try {
+            const clients = await api.getClients();
+            const filter = document.getElementById('dealClientFilter');
+            if (filter) {
+                clients.forEach(client => {
+                    const option = document.createElement('option');
+                    option.value = client.id;
+                    option.textContent = client.name || `Клиент #${client.id}`;
+                    filter.appendChild(option);
+                });
+            }
+        } catch (error) {
+            console.error('Ошибка загрузки клиентов для фильтра:', error);
+        }
+    }
+    
+    function showDealModal() {
+        console.log('Открытие модалки для сделки');
+        // Реализация модального окна
+    }
+</script>

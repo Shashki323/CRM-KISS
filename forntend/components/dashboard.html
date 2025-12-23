@@ -1,0 +1,144 @@
+<div class="dashboard-page">
+    <!-- KPI Карточки -->
+    <div class="dashboard-kpi">
+        <div class="kpi-card">
+            <div class="kpi-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="kpi-content">
+                <h4>Всего клиентов</h4>
+                <p class="kpi-value" id="kpiTotalClients">0</p>
+                <p class="kpi-change">Всего в системе</p>
+            </div>
+        </div>
+        
+        <div class="kpi-card">
+            <div class="kpi-icon">
+                <i class="fas fa-user-check"></i>
+            </div>
+            <div class="kpi-content">
+                <h4>Активных клиентов</h4>
+                <p class="kpi-value" id="kpiActiveClients">0</p>
+                <p class="kpi-change">Статус "активен"</p>
+            </div>
+        </div>
+        
+        <div class="kpi-card">
+            <div class="kpi-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="kpi-content">
+                <h4>Всего сделок</h4>
+                <p class="kpi-value" id="kpiTotalDeals">0</p>
+                <p class="kpi-change">За все время</p>
+            </div>
+        </div>
+        
+        <div class="kpi-card">
+            <div class="kpi-icon">
+                <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <div class="kpi-content">
+                <h4>Продажи за месяц</h4>
+                <p class="kpi-value" id="kpiMonthlySales">0 ₽</p>
+                <p class="kpi-change">Текущий месяц</p>
+            </div>
+        </div>
+        
+        <div class="kpi-card">
+            <div class="kpi-icon">
+                <i class="fas fa-wallet"></i>
+            </div>
+            <div class="kpi-content">
+                <h4>Доход за месяц</h4>
+                <p class="kpi-value" id="kpiMonthlyProfit">0 ₽</p>
+                <p class="kpi-change">Прибыль 30%</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Графики -->
+    <div class="dashboard-charts">
+        <div class="chart-container">
+            <div class="chart-header">
+                <h3><i class="fas fa-chart-line"></i> Динамика продаж</h3>
+                <div class="chart-actions">
+                    <select class="chart-period">
+                        <option value="6">6 месяцев</option>
+                        <option value="12">Год</option>
+                    </select>
+                </div>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <div class="chart-header">
+                <h3><i class="fas fa-chart-pie"></i> Статусы сделок</h3>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Последние сделки -->
+    <div class="dashboard-table">
+        <div class="section-header">
+            <h3><i class="fas fa-history"></i> Последние сделки</h3>
+            <button class="btn btn-secondary" onclick="navigateTo('deals')">
+                Все сделки <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Клиент</th>
+                        <th>Название</th>
+                        <th>Сумма</th>
+                        <th>Статус</th>
+                        <th>Дата</th>
+                    </tr>
+                </thead>
+                <tbody id="recentDealsTable">
+                    <tr><td colspan="6">Загрузка...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Кнопки действий -->
+    <div class="dashboard-actions">
+        <button class="btn btn-primary" onclick="navigateTo('clients')">
+            <i class="fas fa-user-plus"></i> Добавить клиента
+        </button>
+        <button class="btn btn-success" onclick="navigateTo('deals')">
+            <i class="fas fa-plus-circle"></i> Новая сделка
+        </button>
+        <button class="btn btn-outline" id="refreshDashboard">
+            <i class="fas fa-sync-alt"></i> Обновить дашборд
+        </button>
+    </div>
+</div>
+
+<script>
+    // Локальный скрипт для дашборда
+    document.addEventListener('DOMContentLoaded', () => {
+        // Кнопка обновления
+        const refreshBtn = document.getElementById('refreshDashboard');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', async () => {
+                refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Обновление...';
+                await initDashboardPage();
+                setTimeout(() => {
+                    refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Обновить дашборд';
+                }, 1000);
+            });
+        }
+    });
+</script>

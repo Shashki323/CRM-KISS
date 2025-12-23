@@ -46,6 +46,13 @@ npm start
 
 npm run start
 
+5) Для запуска html страниц и проверки их работоспособности потребуется:
+
+cd /CRM/CRM-KISS/frontend
+
+python3 -m http.server 8080
+
+
 
 ОБЯЗАТЕЛЬНО ПРОВЕРИТЬ: 
 

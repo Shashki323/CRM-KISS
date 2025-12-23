@@ -1,0 +1,58 @@
+<div class="users-page">
+    <div class="page-header">
+        <h3><i class="fas fa-address-book"></i> Пользователи системы</h3>
+        <button class="btn btn-primary" id="addUserBtn">
+            <i class="fas fa-user-plus"></i> Добавить пользователя
+        </button>
+    </div>
+    
+    <div class="users-grid">
+        <div class="user-card">
+            <div class="user-avatar">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="user-info">
+                <h4>Администратор</h4>
+                <p class="user-role">Админ</p>
+                <p class="user-email">admin@crm.local</p>
+            </div>
+            <div class="user-actions">
+                <button class="btn-action">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="user-card">
+            <div class="user-avatar">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="user-info">
+                <h4>Менеджер</h4>
+                <p class="user-role">Менеджер</p>
+                <p class="user-email">manager@crm.local</p>
+            </div>
+            <div class="user-actions">
+                <button class="btn-action">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h4><i class="fas fa-info-circle"></i> Информация</h4>
+        <p>Это демо-версия раздела пользователей. В реальной системе здесь будет:</p>
+        <ul>
+            <li>Управление ролями и правами</li>
+            <li>Назначение менеджеров на клиентов</li>
+            <li>Статистика активности</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Компонент пользователей загружен');
+    });
+</script>

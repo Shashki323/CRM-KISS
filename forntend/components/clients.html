@@ -1,0 +1,181 @@
+<div class="clients-page">
+    <!-- Заголовок с кнопками -->
+    <div class="page-actions">
+        <div class="action-group">
+            <button class="btn btn-primary" id="addClientBtn">
+                <i class="fas fa-user-plus"></i> Добавить клиента
+            </button>
+            <button class="btn btn-outline" id="exportClients">
+                <i class="fas fa-download"></i> Экспорт
+            </button>
+        </div>
+        
+        <div class="search-group">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="clientSearch" placeholder="Поиск клиентов...">
+            </div>
+            <select id="clientFilter" class="filter-select">
+                <option value="">Все статусы</option>
+                <option value="активен">Активен</option>
+                <option value="неактивен">Неактивен</option>
+                <option value="потенциальный">Потенциальный</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Статистика -->
+    <div class="clients-stats">
+        <div class="stat-card">
+            <span class="stat-label">Всего клиентов</span>
+            <span class="stat-value" id="totalClientsStat">0</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Активных</span>
+            <span class="stat-value" id="activeClientsStat">0</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">За месяц</span>
+            <span class="stat-value" id="newClientsStat">0</span>
+        </div>
+    </div>
+    
+    <!-- Таблица клиентов -->
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Контакт</th>
+                    <th>Контакты</th>
+                    <th>Статус</th>
+                    <th>Дата добавления</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody id="clientsTableBody">
+                <tr><td colspan="7">Загрузка клиентов...</td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Пагинация -->
+    <div class="pagination" id="clientsPagination">
+        <button class="pagination-btn" disabled>
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="pagination-info">Страница 1 из 1</span>
+        <button class="pagination-btn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Модальное окно для клиента -->
+<template id="clientModalTemplate">
+    <div class="modal-header">
+        <h3 id="modalClientTitle">Добавить клиента</h3>
+        <button class="modal-close">&times;</button>
+    </div>
+    <div class="modal-body">
+        <form id="clientForm">
+            <input type="hidden" id="clientId">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="clientName">Название компании *</label>
+                    <input type="text" id="clientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientStatus">Статус</label>
+                    <select id="clientStatus">
+                        <option value="активен">Активен</option>
+                        <option value="неактивен">Неактивен</option>
+                        <option value="потенциальный">Потенциальный</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="contactPerson">Контактное лицо</label>
+                    <input type="text" id="contactPerson">
+                </div>
+                <div class="form-group">
+                    <label for="contactPosition">Должность</label>
+                    <input type="text" id="contactPosition">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="clientEmail">Email *</label>
+                    <input type="email" id="clientEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">Телефон</label>
+                    <input type="tel" id="clientPhone">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="clientNotes">Примечания</label>
+                <textarea id="clientNotes" rows="3"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="modalCancel">Отмена</button>
+        <button type="submit" form="clientForm" class="btn btn-primary">Сохранить</button>
+    </div>
+</template>
+
+<script>
+    // Локальный скрипт для клиентов
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Компонент клиентов загружен');
+        
+        // Кнопка добавления клиента
+        const addBtn = document.getElementById('addClientBtn');
+        if (addBtn) {
+            addBtn.addEventListener('click', () => {
+                showClientModal();
+            });
+        }
+        
+        // Поиск клиентов
+        const searchInput = document.getElementById('clientSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', debounce((e) => {
+                filterClients(e.target.value);
+            }, 300));
+        }
+        
+        // Фильтр по статусу
+        const statusFilter = document.getElementById('clientFilter');
+        if (statusFilter) {
+            statusFilter.addEventListener('change', () => {
+                filterClients();
+            });
+        }
+    });
+    
+    function showClientModal(client = null) {
+        // Реализация модального окна
+        console.log('Открытие модалки для клиента:', client);
+        alert('Модальное окно клиента - в разработке');
+    }
+    
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+</script>

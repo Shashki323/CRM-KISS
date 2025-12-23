@@ -1,77 +1,101 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>CRM Dashboard — test chart</title>
-
-    <!-- Картинка вкладки -->
-    <link rel="icon" type="image/png" href="images/logo.png">
-
-    <!-- Font Awesome (иконки) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM KISS - Управление клиентами</title>
+    
+    <!-- Иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+    
     <!-- Стили -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Наши скрипты -->
+    <script src="api.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <aside class="sidebar">
-        <h2 class="logo">Proverka</h2>
-        <ul class="menu">
-            <li class="menu-item active" data-page="dashboard"><i class="fa fa-chart-line"></i> Дашборд</li>
-            <li class="menu-item" data-page="orders"><i class="fa fa-box"></i> Контракты</li>
-            <li class="menu-item" data-page="clients"><i class="fa fa-users"></i> Контрагенты</li>
-            <li class="menu-item" data-page="address-book"><i class="fa fa-address-book"></i> Пользователи</li>
-        </ul>
-    </aside>
+    <!-- Шапка -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>CRM KISS</h1>
+            </div>
+            <div class="user-menu">
+                <span id="currentUser">Администратор</span>
+                <button class="btn btn-icon" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-    <main class="content">
-        <section id="dashboard" class="section">
-            <h1 class="title">Дашборд продаж</h1>
+    <!-- Основной контейнер -->
+    <div class="app-container">
+        <!-- Боковая панель -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Загрузится динамически -->
+            <div class="sidebar-loading">
+                <i class="fas fa-spinner fa-spin"></i> Загрузка меню...
+            </div>
+        </aside>
 
-            <div class="cards">
-                <div class="card"><h3>Продажи за месяц</h3><p class="number" id="salesMonth">-</p></div>
-                <div class="card"><h3>Новых заказов</h3><p class="number" id="newOrders">-</p></div>
-                <div class="card"><h3>Доход</h3><p class="number" id="profit">-</p></div>
-                <div class="card"><h3>Новых клиентов</h3><p class="number" id="clientsCount">-</p></div>
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Заголовок страницы -->
+            <div class="page-header" id="pageHeader">
+                <h2 id="pageTitle">Загрузка...</h2>
+                <div class="header-actions" id="headerActions"></div>
             </div>
 
-            <div class="section chart-section">
-                <h2>График продаж</h2>
-                <!-- canvas обёрнут, чтобы указывать высоту блока -->
-                <div class="chart-wrapper">
-                    <canvas id="salesChart"></canvas>
+            <!-- Контент страницы -->
+            <div class="content-wrapper" id="contentWrapper">
+                <div class="loading-screen">
+                    <i class="fas fa-spinner fa-spin fa-3x"></i>
+                    <p>Загрузка системы...</p>
                 </div>
             </div>
 
-            <div class="section chart-section">
-    <h2>Статусы заказов</h2>
-    <div class="chart-wrapper small-chart">
-        <canvas id="statusChart"></canvas>
+            <!-- Уведомления -->
+            <div id="notifications"></div>
+        </main>
     </div>
-            </div>
 
-            <div class="section">
-                <h2>Последние заказы</h2>
-                <table class="orders-table">
-                    <thead>
-                        <tr><th>ID</th><th>Клиент</th><th>Сумма</th><th>Статус</th></tr>
-                    </thead>
-                    <tbody id="ordersTableBody"></tbody>
-                </table>
-            </div>
-        </section>
+    <!-- Модальные окна (глобальные) -->
+    <div id="modalOverlay" class="modal-overlay hidden"></div>
+    
+    <!-- Модалка для клиентов -->
+    <div id="clientModal" class="modal hidden">
+        <div class="modal-content">
+            <!-- Загрузится динамически -->
+        </div>
+    </div>
 
-        <section id="orders" class="section hidden"><h1>Заказы</h1></section>
-        <section id="clients" class="section hidden"><h1>Клиенты</h1></section>
-    </main>
+    <!-- Модалка для сделок -->
+    <div id="dealModal" class="modal hidden">
+        <div class="modal-content">
+            <!-- Загрузится динамически -->
+        </div>
+    </div>
 
-    <!-- Chart.js: подключаем из CDN (обратите внимание: подключаем ДО нашего script.js) -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
-
-
-
-    <!-- Наш скрипт -->
-    <script src="script.js"></script>
+    <!-- Инициализация -->
+    <script>
+        // Глобальные переменные
+        window.currentPage = null;
+        window.currentCharts = {};
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('CRM SPA загружен');
+            if (window.initApp) {
+                window.initApp();
+            }
+        });
+    </script>
 </body>
 </html>

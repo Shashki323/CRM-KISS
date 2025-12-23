@@ -1,0 +1,43 @@
+<div class="settings-page">
+    <h2><i class="fas fa-cog"></i> Настройки системы</h2>
+    
+    <div class="settings-grid">
+        <div class="settings-card">
+            <h4><i class="fas fa-database"></i> Настройки базы данных</h4>
+            <div class="form-group">
+                <label>URL API сервера</label>
+                <input type="text" value="http://localhost:3000" readonly>
+            </div>
+            <button class="btn btn-outline">Проверить соединение</button>
+        </div>
+        
+        <div class="settings-card">
+            <h4><i class="fas fa-chart-bar"></i> Настройки отчетов</h4>
+            <div class="form-group">
+                <label>Валюта по умолчанию</label>
+                <select>
+                    <option selected>Рубли (₽)</option>
+                    <option>Доллары ($)</option>
+                    <option>Евро (€)</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="settings-card">
+            <h4><i class="fas fa-bell"></i> Уведомления</h4>
+            <div class="form-group checkbox">
+                <input type="checkbox" id="emailNotifications" checked>
+                <label for="emailNotifications">Email уведомления</label>
+            </div>
+            <div class="form-group checkbox">
+                <input type="checkbox" id="dealReminders">
+                <label for="dealReminders">Напоминания о сделках</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="settings-actions">
+        <button class="btn btn-primary">Сохранить настройки</button>
+        <button class="btn btn-secondary">Сбросить к default</button>
+    </div>
+</div>
