@@ -807,7 +807,9 @@ function setupGlobalHandlers() {
     });
 }
 
-// Экспорт
+// Экспорт 
 window.initApp = initApp;
 window.navigateTo = navigateTo;
 window.currentCharts = currentCharts;
+
+// все не работает
