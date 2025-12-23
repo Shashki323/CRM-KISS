@@ -1,0 +1,30 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "name": "ООО Ромашка",
+      "email": "info@romashka.ru",
+      "phone": "+79990001101",
+      "createdAt": "2024-01-15",
+      "status": "активен"
+    },
+    {
+      "id": 2,
+      "name": "ИП Иванов",
+      "email": "ivanov@mail.ru",
+      "phone": "+79990001102",
+      "createdAt": "2024-01-20",
+      "status": "активен"
+    }
+  ],
+  "deals": [
+    {
+      "id": 1,
+      "clientId": 1,
+      "title": "Поставка оборудования",
+      "amount": 150000,
+      "status": "в работе",
+      "createdAt": "2024-01-25"
+    }
+  ]
+}
