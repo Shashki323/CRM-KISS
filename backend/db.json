@@ -15,8 +15,41 @@
       "phone": "+79990001102",
       "createdAt": "2024-01-20",
       "status": "активен"
+    },
+    {
+      "id": 3,
+      "name": "ООО АльфаСтрой",
+      "email": "office@alfastroy.ru",
+      "phone": "+79991110011",
+      "createdAt": "2024-02-01",
+      "status": "активен"
+    },
+    {
+      "id": 4,
+      "name": "ООО ГринСервис",
+      "email": "info@greenservice.ru",
+      "phone": "+79992220022",
+      "createdAt": "2024-02-05",
+      "status": "активен"
+    },
+    {
+      "id": 5,
+      "name": "ИП Кузнецов",
+      "email": "kuznetsov@mail.ru",
+      "phone": "+79993330033",
+      "createdAt": "2024-02-10",
+      "status": "неактивен"
+    },
+    {
+      "id": 6,
+      "name": "ООО ТехПром",
+      "email": "sales@techprom.ru",
+      "phone": "+79994440044",
+      "createdAt": "2024-02-12",
+      "status": "активен"
     }
   ],
+
   "deals": [
     {
       "id": 1,
@@ -25,6 +58,54 @@
       "amount": 150000,
       "status": "в работе",
       "createdAt": "2024-01-25"
+    },
+    {
+      "id": 2,
+      "clientId": 2,
+      "title": "Аренда контейнера",
+      "amount": 8000,
+      "status": "завершена",
+      "createdAt": "2024-01-28"
+    },
+    {
+      "id": 3,
+      "clientId": 3,
+      "title": "Вывоз строительного мусора",
+      "amount": 45000,
+      "status": "в работе",
+      "createdAt": "2024-02-02"
+    },
+    {
+      "id": 4,
+      "clientId": 4,
+      "title": "Обслуживание территории",
+      "amount": 32000,
+      "status": "в работе",
+      "createdAt": "2024-02-06"
+    },
+    {
+      "id": 5,
+      "clientId": 1,
+      "title": "Дополнительный вывоз мусора",
+      "amount": 18000,
+      "status": "завершена",
+      "createdAt": "2024-02-08"
+    },
+    {
+      "id": 6,
+      "clientId": 6,
+      "title": "Поставка контейнеров 8м³",
+      "amount": 135000,
+      "status": "в работе",
+      "createdAt": "2024-02-12"
+    },
+    {
+      "id": 7,
+      "clientId": 3,
+      "title": "Аренда контейнеров",
+      "amount": 24000,
+      "status": "завершена",
+      "createdAt": "2024-02-14"
     }
   ]
 }

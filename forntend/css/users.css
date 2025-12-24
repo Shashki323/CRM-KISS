@@ -1,0 +1,19 @@
+/* Пользователи */
+.users-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;
+  margin-top:20px;
+}
+.user-card{
+  background:#fff;border-radius:12px;padding:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  display:flex;gap:12px;align-items:center;justify-content:space-between;
+}
+.user-avatar{
+  width:44px;height:44px;border-radius:12px;
+  background:#260047;color:#fff;display:flex;align-items:center;justify-content:center;
+}
+.user-info h4{margin:0 0 4px 0;}
+.user-info p{margin:0;color:#6c757d;font-size:12px;}
+.info-box{background:#fff;border-radius:12px;padding:16px;margin-top:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}

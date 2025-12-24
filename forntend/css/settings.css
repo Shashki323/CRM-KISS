@@ -1,0 +1,17 @@
+/* Настройки */
+.settings-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;
+  margin:20px 0;
+}
+.settings-card{
+  background:#fff;border-radius:12px;padding:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+.form-group{display:flex;flex-direction:column;gap:6px;margin:12px 0;}
+.form-group input,.form-group select,.form-group textarea{
+  padding:10px 12px;border:1px solid #dee2e6;border-radius:8px;
+}
+.form-group.checkbox{flex-direction:row;align-items:center;gap:10px;}
+.settings-actions{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;}

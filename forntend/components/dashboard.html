@@ -125,20 +125,3 @@
         </button>
     </div>
 </div>
-
-<script>
-    // Локальный скрипт для дашборда
-    document.addEventListener('DOMContentLoaded', () => {
-        // Кнопка обновления
-        const refreshBtn = document.getElementById('refreshDashboard');
-        if (refreshBtn) {
-            refreshBtn.addEventListener('click', async () => {
-                refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Обновление...';
-                await initDashboardPage();
-                setTimeout(() => {
-                    refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Обновить дашборд';
-                }, 1000);
-            });
-        }
-    });
-</script>

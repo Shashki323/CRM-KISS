@@ -5,9 +5,6 @@
             <button class="btn btn-primary" id="addClientBtn">
                 <i class="fas fa-user-plus"></i> Добавить клиента
             </button>
-            <button class="btn btn-outline" id="exportClients">
-                <i class="fas fa-download"></i> Экспорт
-            </button>
         </div>
         
         <div class="search-group">
@@ -130,52 +127,3 @@
         <button type="submit" form="clientForm" class="btn btn-primary">Сохранить</button>
     </div>
 </template>
-
-<script>
-    // Локальный скрипт для клиентов
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('Компонент клиентов загружен');
-        
-        // Кнопка добавления клиента
-        const addBtn = document.getElementById('addClientBtn');
-        if (addBtn) {
-            addBtn.addEventListener('click', () => {
-                showClientModal();
-            });
-        }
-        
-        // Поиск клиентов
-        const searchInput = document.getElementById('clientSearch');
-        if (searchInput) {
-            searchInput.addEventListener('input', debounce((e) => {
-                filterClients(e.target.value);
-            }, 300));
-        }
-        
-        // Фильтр по статусу
-        const statusFilter = document.getElementById('clientFilter');
-        if (statusFilter) {
-            statusFilter.addEventListener('change', () => {
-                filterClients();
-            });
-        }
-    });
-    
-    function showClientModal(client = null) {
-        // Реализация модального окна
-        console.log('Открытие модалки для клиента:', client);
-        alert('Модальное окно клиента - в разработке');
-    }
-    
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-</script>

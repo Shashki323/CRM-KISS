@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRM KISS - Управление клиентами</title>
-    
+    <link rel="icon" type="image/png" href="images/logo.png">
+
     <!-- Иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
@@ -12,11 +13,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
     
     <!-- Стили -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/base.css">
     
     <!-- Наши скрипты -->
-    <script src="api.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="js/api.js" defer></script>
+    
+    <script src="js/core.js" defer></script>
+    <script src="js/pages/dashboard.js" defer></script>
+    <script src="js/pages/clients.js" defer></script>
+    <script src="js/pages/deals.js" defer></script>
+    <script src="js/pages/users.js" defer></script>
+    <script src="js/pages/settings.js" defer></script>
 </head>
 <body>
     <!-- Шапка -->
@@ -85,10 +92,6 @@
 
     <!-- Инициализация -->
     <script>
-        // Глобальные переменные
-        window.currentPage = null;
-        window.currentCharts = {};
-        
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', () => {
             console.log('CRM SPA загружен');
